@@ -34,3 +34,14 @@ let's you see the geometry of `sphere_hdpe.gdml` geometry (HDPE material sphere)
 runs the simulation using the `run.mac` macro: 1e5 x 2.45 MeV neutron beams.
 See `run.sh` as an example macro to run multiple simulation in a row.
 Energy deposition histogram will be save named as `output_file_name_h1_edep.csv` in csv format.
+
+## Opening the histogram
+The histogram binning is defined in `src/RunAction.cc` line 57.
+```
+  analysisManager->CreateH1("edep" ,"edep", 1e4, 0., 20*MeV);
+```
+`1e4` defines the number of bins, `0., 20*MeV` defines the energy range.
+The output .csv file has four columns. Use "entires" (the first column) to plot the histogram.
+You would need to convert the each bin number to corresponding energy.
+For example, the first bin would represent the energy range of [0*20/10000, 1*20/10000) MeV.
+The i-th bin would represent the energy range of [(i-1)*20/10000, i*20/10000) MeV.
