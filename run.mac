@@ -1,0 +1,33 @@
+###################################################
+# Batch running of events  
+###################################################
+
+# verbosity
+# /tracking/verbose 1
+# /control/verbose 1
+# /run/verbose 2
+
+/tracking/verbose 0
+/control/verbose 0
+/run/verbose 0
+/run/printProgress 10000 # Don't print out Event 9997 starts with initial seeds (51148325,13221595). this type.
+
+/gps/verbose 0
+/gps/particle neutron
+
+/gps/pos/type Surface
+# /gps/pos/type Volume
+
+#in order to use /gps/pos/confine, you need to set a source volume that OVERLAPS the intended volume. Don't make it super large, it won't work.
+/gps/pos/shape Sphere
+/gps/pos/centre 0 0 0 mm
+/gps/pos/inner_radius 9.5 mm
+/gps/pos/radius 10 mm
+
+/gps/pos/confine PV-LV_neutron_source_vacuum_sphere
+/gps/ang/type iso
+/gps/energy 2.45 MeV
+
+/run/beamOn 10000
+
+exit
